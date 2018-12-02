@@ -44,8 +44,8 @@
             this.timer_for_test = new System.Windows.Forms.Timer(this.components);
             this.button_CommandOption = new System.Windows.Forms.Button();
             this.contextMenuStrip_DeleteInput = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.削除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.最後にするToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MoveFileToLastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip_DeleteInput.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -183,25 +183,25 @@
             // contextMenuStrip_DeleteInput
             // 
             this.contextMenuStrip_DeleteInput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.削除ToolStripMenuItem,
-            this.最後にするToolStripMenuItem});
+            this.DeleteFileToolStripMenuItem,
+            this.MoveFileToLastToolStripMenuItem});
             this.contextMenuStrip_DeleteInput.Name = "contextMenuStrip_DeleteInput";
             this.contextMenuStrip_DeleteInput.Size = new System.Drawing.Size(181, 70);
             this.contextMenuStrip_DeleteInput.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
-            // 削除ToolStripMenuItem
+            // DeleteFileToolStripMenuItem
             // 
-            this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
-            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.削除ToolStripMenuItem.Text = "削除";
-            this.削除ToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
+            this.DeleteFileToolStripMenuItem.Name = "DeleteFileToolStripMenuItem";
+            this.DeleteFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteFileToolStripMenuItem.Text = "削除";
+            this.DeleteFileToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
-            // 最後にするToolStripMenuItem
+            // MoveFileToLastToolStripMenuItem
             // 
-            this.最後にするToolStripMenuItem.Name = "最後にするToolStripMenuItem";
-            this.最後にするToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.最後にするToolStripMenuItem.Text = "最後にする";
-            this.最後にするToolStripMenuItem.Click += new System.EventHandler(this.MoveToLastToolStripMenuItem_Click);
+            this.MoveFileToLastToolStripMenuItem.Name = "MoveFileToLastToolStripMenuItem";
+            this.MoveFileToLastToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.MoveFileToLastToolStripMenuItem.Text = "最後にする";
+            this.MoveFileToLastToolStripMenuItem.Click += new System.EventHandler(this.MoveToLastToolStripMenuItem_Click);
             // 
             // Form
             // 
@@ -250,8 +250,8 @@
         private System.Windows.Forms.Timer timer_for_test;
         private System.Windows.Forms.Button button_CommandOption;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_DeleteInput;
-        private System.Windows.Forms.ToolStripMenuItem 削除ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 最後にするToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MoveFileToLastToolStripMenuItem;
     }
 }
 

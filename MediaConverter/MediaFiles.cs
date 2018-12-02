@@ -18,6 +18,7 @@ namespace MediaConverter
             Name = "";
             ScreenName = "";
             IsDummy = false;
+            IsDeleted = false;
         }
 
     }
