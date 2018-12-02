@@ -43,6 +43,10 @@
             this.label_Progress = new System.Windows.Forms.Label();
             this.timer_for_test = new System.Windows.Forms.Timer(this.components);
             this.button_CommandOption = new System.Windows.Forms.Button();
+            this.contextMenuStrip_DeleteInput = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.削除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.最後にするToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip_DeleteInput.SuspendLayout();
             this.SuspendLayout();
             // 
             // InputBox
@@ -57,6 +61,7 @@
             this.InputBox.TabIndex = 0;
             this.InputBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.InputBox_DragDrop);
             this.InputBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.InputBox_DragEnter);
+            this.InputBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InputBox_MouseDown);
             // 
             // label_InputBox
             // 
@@ -162,7 +167,7 @@
             // timer_for_test
             // 
             this.timer_for_test.Enabled = true;
-            this.timer_for_test.Interval = 1000;
+            this.timer_for_test.Interval = 2500;
             this.timer_for_test.Tick += new System.EventHandler(this.timer_for_test_Tick);
             // 
             // button_CommandOption
@@ -174,6 +179,27 @@
             this.button_CommandOption.Text = "設定";
             this.button_CommandOption.UseVisualStyleBackColor = true;
             this.button_CommandOption.Click += new System.EventHandler(this.button_CommandOption_Click);
+            // 
+            // contextMenuStrip_DeleteInput
+            // 
+            this.contextMenuStrip_DeleteInput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.削除ToolStripMenuItem,
+            this.最後にするToolStripMenuItem});
+            this.contextMenuStrip_DeleteInput.Name = "contextMenuStrip_DeleteInput";
+            this.contextMenuStrip_DeleteInput.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip_DeleteInput.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // 削除ToolStripMenuItem
+            // 
+            this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
+            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.削除ToolStripMenuItem.Text = "削除";
+            // 
+            // 最後にするToolStripMenuItem
+            // 
+            this.最後にするToolStripMenuItem.Name = "最後にするToolStripMenuItem";
+            this.最後にするToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.最後にするToolStripMenuItem.Text = "最後にする";
             // 
             // Form
             // 
@@ -199,6 +225,7 @@
             this.Name = "Form";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Form";
+            this.contextMenuStrip_DeleteInput.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,6 +247,9 @@
         private System.Windows.Forms.Label label_Progress;
         private System.Windows.Forms.Timer timer_for_test;
         private System.Windows.Forms.Button button_CommandOption;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip_DeleteInput;
+        private System.Windows.Forms.ToolStripMenuItem 削除ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 最後にするToolStripMenuItem;
     }
 }
 

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaConverter", "HenkankunModoki\MediaConverter.csproj", "{BAEB9A8E-90B2-408C-8E6B-69D1FB242149}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaConverter", "MediaConverter\MediaConverter.csproj", "{BAEB9A8E-90B2-408C-8E6B-69D1FB242149}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

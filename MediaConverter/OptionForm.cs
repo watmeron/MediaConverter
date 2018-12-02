@@ -12,23 +12,45 @@ namespace MediaConverter
 {
     public partial class OptionForm : System.Windows.Forms.Form
     {
-        public int parrallel_num = 1;
+        private OptionData od;
+        private IDictionary<int, int> map = new Dictionary<int, int>();
 
         public OptionForm()
         {
             InitializeComponent();
 
+            //オプション用クラスの生成
+            od = new OptionData();
+
             //コンボボックスへの追加
-            for(int i = 1; i <= 16; i *= 2)
+            for (int i = 0; i <= 4; i++)
             {
-                comboBox_ParrallelNum.Items.Add(i);
+                int parrallelNum = (int)Math.Round(Math.Pow(2,i));
+                System.Diagnostics.Debug.WriteLine(parrallelNum);
+
+                map.Add(parrallelNum, i);
+                
+                comboBox_ParrallelNum.Items.Add(parrallelNum);
             }
-            comboBox_ParrallelNum.SelectedIndex = 0;
+            //comboBox_ParrallelNum.SelectedIndex = od.parrallel_num - 1;
+            comboBox_ParrallelNum.SelectedIndex = map[od.parrallel_num];
+
+        }
+
+        public void SetOptionData(OptionData op_input)
+        {
+            od = op_input;
+            comboBox_ParrallelNum.SelectedIndex = map[od.parrallel_num];
+        }
+
+        public OptionData GetOptionData()
+        {
+            return od;
         }
 
         private void comboBox_ParrallelNum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            parrallel_num = (int)comboBox_ParrallelNum.Items[comboBox_ParrallelNum.SelectedIndex];
+            od.parrallel_num = (int)comboBox_ParrallelNum.Items[comboBox_ParrallelNum.SelectedIndex];
         }
     }
 }
