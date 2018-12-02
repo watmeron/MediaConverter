@@ -186,5 +186,15 @@ namespace MediaConverter
                     break;
             }
         }
+
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Delete File. ");
+        }
+
+        private void MoveToLastToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Move To Last. ");
+        }
     }
 }

@@ -192,14 +192,16 @@
             // 削除ToolStripMenuItem
             // 
             this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
-            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.削除ToolStripMenuItem.Text = "削除";
+            this.削除ToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // 最後にするToolStripMenuItem
             // 
             this.最後にするToolStripMenuItem.Name = "最後にするToolStripMenuItem";
             this.最後にするToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.最後にするToolStripMenuItem.Text = "最後にする";
+            this.最後にするToolStripMenuItem.Click += new System.EventHandler(this.MoveToLastToolStripMenuItem_Click);
             // 
             // Form
             // 
