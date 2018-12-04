@@ -190,6 +190,18 @@ namespace MediaConverter
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Delete File. ");
+
+            if(InputBox.SelectedIndex >= 0)
+            {
+                List<MediaFiles> mf = InputFiles.ToList();
+                mf.RemoveAt(InputFiles.Count - InputBox.SelectedIndex - 1);
+                InputFiles.Clear();
+                foreach(MediaFiles n in mf)
+                {
+                    InputFiles.Enqueue(n);
+                }
+                ProssessWaitListBoxUpdate();
+            }
         }
 
         private void MoveToLastToolStripMenuItem_Click(object sender, EventArgs e)
@@ -197,19 +209,18 @@ namespace MediaConverter
             System.Diagnostics.Debug.WriteLine("Move To Last. ");
         }
 
-        private void label_InputBox_Click(object sender, EventArgs e)
+        private void checkButton_Continue_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void Form_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
+            if (checkButton_Continue.Checked)
+            {
+                checkButton_Continue.Text = "実行中";
+                timer_for_test.Enabled = true;
+            }
+            else
+            {
+                checkButton_Continue.Text = "停止中";
+                timer_for_test.Enabled = false;
+            }
         }
     }
 }

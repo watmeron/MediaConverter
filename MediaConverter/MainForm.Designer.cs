@@ -65,7 +65,7 @@
             this.InputBox.ItemHeight = 12;
             this.InputBox.Location = new System.Drawing.Point(3, 23);
             this.InputBox.Name = "InputBox";
-            this.InputBox.Size = new System.Drawing.Size(245, 52);
+            this.InputBox.Size = new System.Drawing.Size(271, 52);
             this.InputBox.TabIndex = 0;
             this.InputBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.InputBox_DragDrop);
             this.InputBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.InputBox_DragEnter);
@@ -77,17 +77,16 @@
             this.label_InputBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_InputBox.Location = new System.Drawing.Point(3, 0);
             this.label_InputBox.Name = "label_InputBox";
-            this.label_InputBox.Size = new System.Drawing.Size(245, 20);
+            this.label_InputBox.Size = new System.Drawing.Size(271, 20);
             this.label_InputBox.TabIndex = 1;
             this.label_InputBox.Text = "変換待ち";
             this.label_InputBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_InputBox.Click += new System.EventHandler(this.label_InputBox_Click);
             // 
             // label_Filter
             // 
             this.label_Filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label_Filter.AutoSize = true;
-            this.label_Filter.Location = new System.Drawing.Point(106, 106);
+            this.label_Filter.Location = new System.Drawing.Point(119, 107);
             this.label_Filter.Name = "label_Filter";
             this.label_Filter.Size = new System.Drawing.Size(38, 20);
             this.label_Filter.TabIndex = 2;
@@ -98,7 +97,7 @@
             // 
             this.label_Under1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label_Under1.AutoSize = true;
-            this.label_Under1.Location = new System.Drawing.Point(117, 86);
+            this.label_Under1.Location = new System.Drawing.Point(130, 87);
             this.label_Under1.Name = "label_Under1";
             this.label_Under1.Size = new System.Drawing.Size(17, 20);
             this.label_Under1.TabIndex = 3;
@@ -113,16 +112,16 @@
             this.FilterBox.BackColor = System.Drawing.SystemColors.Window;
             this.FilterBox.FormattingEnabled = true;
             this.FilterBox.ItemHeight = 12;
-            this.FilterBox.Location = new System.Drawing.Point(3, 129);
+            this.FilterBox.Location = new System.Drawing.Point(3, 130);
             this.FilterBox.Name = "FilterBox";
-            this.FilterBox.Size = new System.Drawing.Size(245, 52);
+            this.FilterBox.Size = new System.Drawing.Size(271, 52);
             this.FilterBox.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(117, 289);
+            this.label1.Location = new System.Drawing.Point(130, 291);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 20);
             this.label1.TabIndex = 5;
@@ -131,18 +130,18 @@
             // comboBox1
             // 
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.SetColumnSpan(this.comboBox1, 2);
+            this.tableLayoutPanel2.SetColumnSpan(this.comboBox1, 3);
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(63, 3);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(179, 20);
+            this.comboBox1.Size = new System.Drawing.Size(205, 20);
             this.comboBox1.TabIndex = 6;
             // 
             // label_Command
             // 
             this.label_Command.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label_Command.AutoSize = true;
-            this.label_Command.Location = new System.Drawing.Point(105, 212);
+            this.label_Command.Location = new System.Drawing.Point(118, 214);
             this.label_Command.Name = "label_Command";
             this.label_Command.Size = new System.Drawing.Size(40, 20);
             this.label_Command.TabIndex = 7;
@@ -152,7 +151,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(117, 192);
+            this.label2.Location = new System.Drawing.Point(130, 194);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(17, 20);
             this.label2.TabIndex = 8;
@@ -166,16 +165,16 @@
             this.CompleteBox.FormattingEnabled = true;
             this.CompleteBox.HorizontalScrollbar = true;
             this.CompleteBox.ItemHeight = 12;
-            this.CompleteBox.Location = new System.Drawing.Point(3, 332);
+            this.CompleteBox.Location = new System.Drawing.Point(3, 334);
             this.CompleteBox.Name = "CompleteBox";
-            this.CompleteBox.Size = new System.Drawing.Size(245, 52);
+            this.CompleteBox.Size = new System.Drawing.Size(271, 52);
             this.CompleteBox.TabIndex = 9;
             // 
             // label_Complete
             // 
             this.label_Complete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label_Complete.AutoSize = true;
-            this.label_Complete.Location = new System.Drawing.Point(111, 309);
+            this.label_Complete.Location = new System.Drawing.Point(124, 311);
             this.label_Complete.Name = "label_Complete";
             this.label_Complete.Size = new System.Drawing.Size(29, 20);
             this.label_Complete.TabIndex = 10;
@@ -195,7 +194,6 @@
             // 
             // timer_for_test
             // 
-            this.timer_for_test.Enabled = true;
             this.timer_for_test.Interval = 2500;
             this.timer_for_test.Tick += new System.EventHandler(this.timer_for_test_Tick);
             // 
@@ -206,7 +204,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_CommandOption.Location = new System.Drawing.Point(63, 28);
             this.button_CommandOption.Name = "button_CommandOption";
-            this.button_CommandOption.Size = new System.Drawing.Size(88, 20);
+            this.button_CommandOption.Size = new System.Drawing.Size(69, 20);
             this.button_CommandOption.TabIndex = 12;
             this.button_CommandOption.Text = "設定";
             this.button_CommandOption.UseVisualStyleBackColor = true;
@@ -269,7 +267,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(251, 398);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(277, 398);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
             // tableLayoutPanel2
@@ -277,23 +275,22 @@
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel2.Controls.Add(this.label_Progress, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button_CommandOption, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.comboBox1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.checkButton_Continue, 2, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 235);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 237);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(245, 51);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(271, 51);
             this.tableLayoutPanel2.TabIndex = 8;
-            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // checkButton_Continue
             // 
@@ -302,19 +299,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkButton_Continue.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkButton_Continue.AutoSize = true;
-            this.checkButton_Continue.Location = new System.Drawing.Point(157, 28);
+            this.checkButton_Continue.Location = new System.Drawing.Point(138, 28);
             this.checkButton_Continue.Name = "checkButton_Continue";
-            this.checkButton_Continue.Size = new System.Drawing.Size(85, 20);
+            this.checkButton_Continue.Size = new System.Drawing.Size(64, 20);
             this.checkButton_Continue.TabIndex = 13;
-            this.checkButton_Continue.Text = "実行";
+            this.checkButton_Continue.Text = "停止中";
             this.checkButton_Continue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkButton_Continue.UseVisualStyleBackColor = true;
+            this.checkButton_Continue.CheckedChanged += new System.EventHandler(this.checkButton_Continue_CheckedChanged);
             // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(275, 422);
+            this.ClientSize = new System.Drawing.Size(301, 422);
             this.Controls.Add(this.tableLayoutPanel1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MaximizeBox = false;
@@ -322,7 +320,6 @@
             this.Name = "Form";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Form";
-            this.Load += new System.EventHandler(this.Form_Load);
             this.contextMenuStrip_DeleteInput.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
