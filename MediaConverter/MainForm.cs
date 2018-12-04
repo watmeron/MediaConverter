@@ -196,5 +196,15 @@ namespace MediaConverter
         {
             System.Diagnostics.Debug.WriteLine("Move To Last. ");
         }
+
+        private void label_InputBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
