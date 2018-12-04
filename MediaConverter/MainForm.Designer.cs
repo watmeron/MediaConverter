@@ -48,6 +48,7 @@
             this.MoveFileToLastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.checkButton_Continue = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip_DeleteInput.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -130,6 +131,7 @@
             // comboBox1
             // 
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.SetColumnSpan(this.comboBox1, 2);
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(63, 3);
             this.comboBox1.Name = "comboBox1";
@@ -181,13 +183,15 @@
             // 
             // label_Progress
             // 
+            this.label_Progress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label_Progress.AutoSize = true;
             this.label_Progress.BackColor = System.Drawing.SystemColors.Control;
-            this.label_Progress.Location = new System.Drawing.Point(3, 0);
+            this.label_Progress.Location = new System.Drawing.Point(8, 0);
             this.label_Progress.Name = "label_Progress";
-            this.label_Progress.Size = new System.Drawing.Size(43, 12);
+            this.label_Progress.Size = new System.Drawing.Size(43, 25);
             this.label_Progress.TabIndex = 11;
             this.label_Progress.Text = "実行中:";
+            this.label_Progress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer_for_test
             // 
@@ -197,9 +201,12 @@
             // 
             // button_CommandOption
             // 
+            this.button_CommandOption.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_CommandOption.Location = new System.Drawing.Point(63, 28);
             this.button_CommandOption.Name = "button_CommandOption";
-            this.button_CommandOption.Size = new System.Drawing.Size(75, 20);
+            this.button_CommandOption.Size = new System.Drawing.Size(88, 20);
             this.button_CommandOption.TabIndex = 12;
             this.button_CommandOption.Text = "設定";
             this.button_CommandOption.UseVisualStyleBackColor = true;
@@ -261,6 +268,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(251, 398);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
@@ -269,19 +277,38 @@
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel2.Controls.Add(this.label_Progress, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button_CommandOption, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.comboBox1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.checkButton_Continue, 2, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 235);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(245, 51);
             this.tableLayoutPanel2.TabIndex = 8;
+            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
+            // 
+            // checkButton_Continue
+            // 
+            this.checkButton_Continue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkButton_Continue.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkButton_Continue.AutoSize = true;
+            this.checkButton_Continue.Location = new System.Drawing.Point(157, 28);
+            this.checkButton_Continue.Name = "checkButton_Continue";
+            this.checkButton_Continue.Size = new System.Drawing.Size(85, 20);
+            this.checkButton_Continue.TabIndex = 13;
+            this.checkButton_Continue.Text = "実行";
+            this.checkButton_Continue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkButton_Continue.UseVisualStyleBackColor = true;
             // 
             // Form
             // 
@@ -327,6 +354,7 @@
         private System.Windows.Forms.ToolStripMenuItem MoveFileToLastToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.CheckBox checkButton_Continue;
     }
 }
 
