@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlFiles.cs" />
     <Compile Include="MediaFiles.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

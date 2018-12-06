@@ -11,13 +11,14 @@ namespace MediaConverter
         public String Name;         //ファイル名
         public String ScreenName;   //リストに表示する名前
         public Boolean IsDummy;     //ダミーデータか
-        public Boolean IsDeleted;   //キューから削除済みか
+        public Boolean IsDeleted;   //データ削除されたか
+        public Boolean IsFinished;  //データ処理が完了したか
 
         public MediaFiles()
         {
             Name = "";
             ScreenName = "";
-            IsDummy = false;
+            IsDummy = true;
             IsDeleted = false;
         }
 

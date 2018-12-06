@@ -18,7 +18,7 @@ namespace MediaConverter
         private Queue<MediaFiles> InputFiles = new Queue<MediaFiles>();
 
         //処理中ファイル
-        private MediaFiles ProssesingFiles = new MediaFiles();
+        private MediaFiles ProssesingFiles = new MediaFiles() { IsDummy = true };
 
         //処理終了ファイル
         private Queue<MediaFiles> FinishFiles = new Queue<MediaFiles>();
@@ -35,19 +35,23 @@ namespace MediaConverter
         private void InputBox_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            foreach(string file in files)
+            foreach (string file in files)
             {
                 MediaFiles pf = new MediaFiles
                 {
                     Name = file,
-                    ScreenName = System.IO.Path.GetFileName(file)
+                    ScreenName = System.IO.Path.GetFileName(file),
+                    IsDummy = false
                 };
 
                 InputFiles.Enqueue(pf);
-
-                ProssessWaitListBoxUpdate();
-
             }
+
+            //処理に入れるか確認
+            //ProcessCommandUpdate();
+
+            ProssessWaitListBoxUpdate();
+
         }
 
         //処理待ちファイルのリストを更新する関数
@@ -71,6 +75,10 @@ namespace MediaConverter
             {
                 InputBox.SelectedIndex = beforeSelectedIndex;
             }
+
+            //処理に入れるか確認
+            ProcessCommandUpdate();
+
             InputBox.Update();
         }
 
@@ -97,26 +105,39 @@ namespace MediaConverter
 
         private void timer_for_test_Tick(object sender, EventArgs e)
         {
+            ProssesingFiles.IsFinished = true;
+            ProcessCommandUpdate();
+        }
 
+        //外部コマンドの処理が終了したときと即座に更新したいときに呼ぶ
+        private void ProcessCommandUpdate()
+        {
             //処理済ファイルを移動
-            if (ProssesingFiles.IsDummy == false)
+            if (!ProssesingFiles.IsDummy && ProssesingFiles.IsFinished)
             {
                 FinishFiles.Enqueue(ProssesingFiles);
+
+                //とりあえずダミーデータを入れる
+                ProssesingFiles = new MediaFiles { IsDummy = true };
             }
 
-            //ファイルを処理中に移動
-            if (InputBox.Items.Count == 0)
+            if (ProssesingFiles.IsDummy == true)
             {
-                ProssesingFiles = new MediaFiles { IsDummy = true };
+                //ファイルを処理中に移動
+                if (InputBox.Items.Count != 0)
+                {
+                    //ファイルを実行する
+                    ProssesingFiles = InputFiles.Dequeue();
+                }
+
+                //処理中表示を変更
+                label_Progress.Text = "実行中: "
+                    + System.IO.Path.GetFileName(ProssesingFiles.ScreenName);
             }
             else
             {
-                ProssesingFiles = InputFiles.Dequeue();
+                label_Progress.Text = "実行中: ";
             }
-
-            //処理中表示を変更
-            label_Progress.Text = "実行中: "
-                + System.IO.Path.GetFileName(ProssesingFiles.ScreenName);
 
             //表示の更新
             ProssessWaitListBoxUpdate();
@@ -215,6 +236,9 @@ namespace MediaConverter
             {
                 checkButton_Continue.Text = "実行中";
                 timer_for_test.Enabled = true;
+
+                //処理に入れるか確認
+                ProcessCommandUpdate();
             }
             else
             {
