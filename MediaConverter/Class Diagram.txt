@@ -1,0 +1,86 @@
+﻿大まかなデータ構成
+
+@startuml
+処理ファイルリスト <|-- ファイル情報
+	メイン o-- オプションパラメータ
+	メイン o-- フィルタ
+	フィルタ o-- コマンドパラメータ
+	メイン o-- 処理ファイルリスト
+	メイン o-- コマンド実行
+	コマンド実行 o-- オプションパラメータ
+	コマンド実行 o-- コマンドパラメータ
+	メイン o-- ウィンドウフォーム
+
+	class メイン{
+	データの移動処理()
+	データの管理()
+	}
+
+	class ファイル情報{
+	ファイル名・パス
+	表示ファイル名
+	コンストラクタ()
+	}
+
+	class 処理ファイルリスト{
+	ユニークID
+	ダミーデータか
+	削除済みデータか
+	コンストラクタ()
+	}
+
+	class オプションパラメータ{
+	同時実行数
+	言語
+	データ取得()
+	文字列として取得()
+	}
+
+	class コマンドパラメータ{
+	コマンド
+	}
+
+	class フィルタ{
+	フィルタ内容
+	置換する文字列
+	フィルタリングの実行()
+	分類()
+	}
+
+	class コマンド実行{
+	実行するコマンド
+	実行中のステータス
+	実行中の処理ファイルID一覧
+	}
+
+	class ウィンドウフォーム{
+	フォームデータ
+	イベント関数()
+	ユーザー入力の処理()
+	}
+@enduml
+
+
+
+
+
+
+クラス内変数・メソッドの構成
+@startuml
+	ListedFiles <|-- MediaFiles
+
+	MediaFiles : string FileName
+	MediaFiles : string ScreenName
+	MediaFiles : MediaFiles()
+
+	ListedFiles : int id
+	ListedFiles : Boolean IsDummy
+	ListedFiles : Boolean IsDeleted
+	ListedFiles : ListedFiles()
+
+	OptionData : parrallel_num
+	OptionData : Langage
+	OptionData : OptionData()
+	OptionData : ToString()
+@enduml
+

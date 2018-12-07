@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.txt" />
+    <Content Include="Class Diagram.txt" />
     <Content Include="Use case Diagram.png" />
     <Content Include="Use case Diagram.txt" />
   </ItemGroup>
