@@ -39,10 +39,13 @@ namespace MediaConverter
     class ControlFiles
     {
         private List<FilesForCovert> Data;       //ファイルデータ
+        private int Count;                       //ファイルを連続しての参照用
 
         public ControlFiles()
         {
             Data = new List<FilesForCovert>();
+
+            Count = 0;
         }
 
         /*
@@ -64,9 +67,44 @@ namespace MediaConverter
             return 0;
         }
 
+        /*
+         * IDからデータを取得する関数
+         */
         private FilesForCovert FindDataFromId(int SearchId)
         {
             return Data.Find(x => x.Id == SearchId);
+        }
+
+        /*
+         * 全データを取得する関数
+         * c: 参照するインデックス
+         */
+         public FilesForCovert GetNextData(int c = 0)
+        {
+            int RefData = Count;
+            Count++;
+
+            if(c != 0)
+            {
+                Count = c;
+            }
+
+            return Data[RefData];
+        }
+
+        /*
+         * リストの最後のデータを返す
+         */
+         public FilesForCovert GetLastData()
+        {
+            if (Data.Count > 0)
+            {
+                return Data.Last();
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }

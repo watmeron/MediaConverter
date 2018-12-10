@@ -16,5 +16,14 @@ namespace MediaConverter
         {
             InitializeComponent();
         }
+
+        public int Update(int Id = 0, string Name = "", Boolean BatchType = false,
+            String Status = "Waiting", Boolean Dummy = false)
+        {
+            dataGridView1.Rows.Add(Id, Name, BatchType, Status, Dummy);
+            dataGridView1.Update();
+
+            return 0;
+        }
     }
 }

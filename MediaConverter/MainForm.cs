@@ -25,6 +25,9 @@ namespace MediaConverter
         //処理終了ファイル
         private Queue<MediaFiles> FinishFiles = new Queue<MediaFiles>();
 
+        //すべてのファイル
+        private ControlFiles cs;
+
         public MainForm()
         {
             InitializeComponent();
@@ -34,6 +37,9 @@ namespace MediaConverter
             //データ表示ウィンドウ
             form_list = new ShowFileList();
             form_list.Show();
+
+            //すべてのファイルリストを確保
+            cs = new ControlFiles();
         }
 
 
@@ -53,6 +59,13 @@ namespace MediaConverter
 
                 ProssessWaitListBoxUpdate();
 
+                cs.AddFile(file);
+
+                if (cs.GetLastData() != null)
+                {
+                    System.Diagnostics.Debug.WriteLine("File Input.");
+                    form_list.Update(cs.GetLastData().Id, cs.GetLastData().Name);
+                }
             }
         }
 
