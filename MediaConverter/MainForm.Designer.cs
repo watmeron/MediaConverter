@@ -1,6 +1,6 @@
 ﻿namespace MediaConverter
 {
-    partial class Form
+    partial class MainForm
     {
         /// <summary>
         /// 必要なデザイナー変数です。

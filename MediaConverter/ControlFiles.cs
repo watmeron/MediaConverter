@@ -21,7 +21,8 @@ namespace MediaConverter
         public FilesForCovert(int NewId)
         {
             Id = NewId;
-
+            IsDummy = false;
+            IsDeleted = false;
             return;
         }
 

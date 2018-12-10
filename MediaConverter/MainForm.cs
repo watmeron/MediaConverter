@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace MediaConverter
 {
-    public partial class Form : System.Windows.Forms.Form
+    public partial class MainForm : Form
     {
         OptionData od;
+
+        ShowFileList form_list;
 
         //入力待ちファイル
         private Queue<MediaFiles> InputFiles = new Queue<MediaFiles>();
@@ -23,11 +25,15 @@ namespace MediaConverter
         //処理終了ファイル
         private Queue<MediaFiles> FinishFiles = new Queue<MediaFiles>();
 
-        public Form()
+        public MainForm()
         {
             InitializeComponent();
 
             od = new OptionData();
+
+            //データ表示ウィンドウ
+            form_list = new ShowFileList();
+            form_list.Show();
         }
 
 
@@ -40,7 +46,7 @@ namespace MediaConverter
                 MediaFiles pf = new MediaFiles
                 {
                     Name = file,
-                    ScreenName = System.IO.Path.GetFileName(file)
+                    //ScreenName = System.IO.Path.GetFileName(file)
                 };
 
                 InputFiles.Enqueue(pf);
@@ -60,7 +66,7 @@ namespace MediaConverter
             //下から抜けていくように表示する処理
             Queue<MediaFiles> rInputFiles = new Queue<MediaFiles>(InputFiles);
             foreach (MediaFiles data in rInputFiles){
-                InputBox.Items.Insert(0, System.IO.Path.GetFileName(data.ScreenName));
+                InputBox.Items.Insert(0, System.IO.Path.GetFileName(data.GetScreenName()));
             }
 
             if (beforeSelectedIndex >= InputBox.Items.Count)
@@ -83,7 +89,7 @@ namespace MediaConverter
 
             foreach (MediaFiles data in FinishFiles)
             {
-                CompleteBox.Items.Insert(0, System.IO.Path.GetFileName(data.ScreenName));
+                CompleteBox.Items.Insert(0, System.IO.Path.GetFileName(data.GetScreenName()));
             }
 
             CompleteBox.SelectedIndex = beforeSelectedIndex;
@@ -99,7 +105,8 @@ namespace MediaConverter
         {
 
             //処理済ファイルを移動
-            if (ProssesingFiles.IsDummy == false)
+            //if (ProssesingFiles.IsDummy == false)
+            if(true)
             {
                 FinishFiles.Enqueue(ProssesingFiles);
             }
@@ -107,7 +114,8 @@ namespace MediaConverter
             //ファイルを処理中に移動
             if (InputBox.Items.Count == 0)
             {
-                ProssesingFiles = new MediaFiles { IsDummy = true };
+                //ProssesingFiles = new MediaFiles { IsDummy = true };
+                ProssesingFiles = new MediaFiles();
             }
             else
             {
@@ -116,7 +124,7 @@ namespace MediaConverter
 
             //処理中表示を変更
             label_Progress.Text = "実行中: "
-                + System.IO.Path.GetFileName(ProssesingFiles.ScreenName);
+                + System.IO.Path.GetFileName(ProssesingFiles.GetScreenName());
 
             //表示の更新
             ProssessWaitListBoxUpdate();
