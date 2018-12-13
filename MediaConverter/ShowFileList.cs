@@ -18,16 +18,6 @@ namespace MediaConverter
             InitializeComponent();
         }
 
-        public int Add(int Id = 0, string Name = "", Boolean BatchType = false,
-            String Status = "Waiting", Boolean Dummy = false, Boolean IsDeleted = false)
-        {
-            Name = System.IO.Path.GetFileNameWithoutExtension(Name);
-
-            AllDataGridView.Rows.Add(Id, Name, BatchType, Status, Dummy, IsDeleted);
-            AllDataGridView.Update();
-
-            return 0;
-        }
 
         public void Update(ControlFiles controlFiles)
         {

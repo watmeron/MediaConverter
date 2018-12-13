@@ -64,7 +64,8 @@ namespace MediaConverter
                 if (cs.GetLastData() != null)
                 {
                     System.Diagnostics.Debug.WriteLine("File Input.");
-                    form_list.Add(cs.GetLastData().Id, cs.GetLastData().Name);
+                    //form_list.Add(cs.GetLastData().Id, cs.GetLastData().Name);
+                    form_list.Update(cs);
                 }
             }
         }
