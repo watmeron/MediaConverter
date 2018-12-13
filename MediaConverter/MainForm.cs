@@ -64,7 +64,7 @@ namespace MediaConverter
                 if (cs.GetLastData() != null)
                 {
                     System.Diagnostics.Debug.WriteLine("File Input.");
-                    form_list.Update(cs.GetLastData().Id, cs.GetLastData().Name);
+                    form_list.Add(cs.GetLastData().Id, cs.GetLastData().Name);
                 }
             }
         }
@@ -91,6 +91,8 @@ namespace MediaConverter
                 InputBox.SelectedIndex = beforeSelectedIndex;
             }
             InputBox.Update();
+
+            form_list.UpdateDeletedData(cs);
         }
 
         //処理済みファイルのリストを更新する関数
@@ -223,6 +225,10 @@ namespace MediaConverter
                 }
                 ProssessWaitListBoxUpdate();
             }
+
+            //データをリストから削除
+            cs.GetNextData(InputFiles.Count - InputBox.SelectedIndex - 1).IsDeleted = true;
+            form_list.Update(cs);
         }
 
         private void MoveToLastToolStripMenuItem_Click(object sender, EventArgs e)

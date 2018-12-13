@@ -13,22 +13,25 @@ using System.IO;
 
 namespace MediaConverter
 {
-    class FilesForCovert : MediaFiles
+    public class FilesForCovert : MediaFiles
     {
         public readonly int Id;             //プロセス中でユニークなID
         public Boolean IsDummy, IsDeleted;  //ダミーデータか、削除済みデータか
+        public readonly int Status;         //データのステータス
 
         public FilesForCovert(int NewId)
         {
             Id = NewId;
             IsDummy = false;
             IsDeleted = false;
+
+            Status = (int)DataTypes.Standby;
             return;
         }
 
     }
 
-    enum DataTypes : int
+    public enum DataTypes : int
     {
         Standby = 100,          //処理待ち
         Proccessing,            //処理中
@@ -36,16 +39,16 @@ namespace MediaConverter
         Filtering               //終了
     }
 
-    class ControlFiles
+    public class ControlFiles
     {
         private List<FilesForCovert> Data;       //ファイルデータ
         private int Count;                       //ファイルを連続しての参照用
 
         public ControlFiles()
         {
-            Data = new List<FilesForCovert>();
+             Data = new List<FilesForCovert>();
 
-            Count = 0;
+             Count = 0;
         }
 
         /*
@@ -81,30 +84,38 @@ namespace MediaConverter
          */
          public FilesForCovert GetNextData(int c = 0)
         {
-            int RefData = Count;
-            Count++;
+             int RefData = Count;
+             Count++;
 
-            if(c != 0)
-            {
-                Count = c;
-            }
+             if(c != 0)
+             {
+                 Count = c;
+             }
 
-            return Data[RefData];
+             return Data[RefData];
         }
 
         /*
          * リストの最後のデータを返す
          */
          public FilesForCovert GetLastData()
+         {
+             if (Data.Count > 0)
+             {
+                 return Data.Last();
+             }
+             else
+             {
+                 return null;
+             }
+         }
+
+        /*
+         * 一致する条件のデータを検索
+         */
+         public List<FilesForCovert> GetMatchList(Func<FilesForCovert, Boolean> func)
         {
-            if (Data.Count > 0)
-            {
-                return Data.Last();
-            }
-            else
-            {
-                return null;
-            }
+            return Data.Where(func).ToList();
         }
 
     }

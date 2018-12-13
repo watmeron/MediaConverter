@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MediaConverter
 {
-    class MediaFiles
+    public class MediaFiles
     {
         public String Name;         //ファイル名
 
