@@ -42,14 +42,21 @@ namespace MediaConverter
     public class ControlFiles
     {
         private List<FilesForCovert> Data;       //ファイルデータ
-        private int Count;                       //ファイルを連続しての参照用
+        private int RefCount;                    //ファイルを連続しての参照用
+        public int Count;                        //データ数
 
         public ControlFiles()
         {
-             Data = new List<FilesForCovert>();
+            Data = new List<FilesForCovert>();
 
-             Count = 0;
+            Count = 0;
+
+            RefCount = 0;
         }
+
+        /*
+         * データ数を返す
+         */
 
         /*
          *  ファイルを新規に追加する
@@ -66,6 +73,8 @@ namespace MediaConverter
             }
 
             Data.Add(NewData);
+
+            Count = Data.Count;
 
             return 0;
         }
@@ -84,12 +93,12 @@ namespace MediaConverter
          */
          public FilesForCovert GetNextData(int c = 0)
         {
-             int RefData = Count;
-             Count++;
+             int RefData = RefCount;
+             RefCount++;
 
              if(c != 0)
              {
-                 Count = c;
+                 RefCount = c;
              }
 
              return Data[RefData];
