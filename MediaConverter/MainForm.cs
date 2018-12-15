@@ -10,24 +10,27 @@ using System.Windows.Forms;
 
 namespace MediaConverter
 {
-    public partial class Form : System.Windows.Forms.Form
+    public partial class MainForm : Form
     {
         OptionData od;
 
-        //入力待ちファイル
-        private Queue<MediaFiles> InputFiles = new Queue<MediaFiles>();
+        ShowFileList form_list;
 
-        //処理中ファイル
-        private MediaFiles ProssesingFiles = new MediaFiles();
+        //すべてのファイル
+        private ControlFiles cs;
 
-        //処理終了ファイル
-        private Queue<MediaFiles> FinishFiles = new Queue<MediaFiles>();
-
-        public Form()
+        public MainForm()
         {
             InitializeComponent();
 
             od = new OptionData();
+
+            //データ表示ウィンドウ
+            form_list = new ShowFileList();
+            form_list.Show();
+
+            //すべてのファイルリストを確保
+            cs = new ControlFiles();
         }
 
 
@@ -37,17 +40,16 @@ namespace MediaConverter
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             foreach(string file in files)
             {
-                MediaFiles pf = new MediaFiles
+                cs.AddFile(file);
+
+                if (cs.GetLastData() != null)
                 {
-                    Name = file,
-                    ScreenName = System.IO.Path.GetFileName(file)
-                };
-
-                InputFiles.Enqueue(pf);
-
-                ProssessWaitListBoxUpdate();
-
+                    System.Diagnostics.Debug.WriteLine("File Input.");                    
+                }
             }
+
+            ProssessWaitListBoxUpdate();
+            form_list.Update(cs);
         }
 
         //処理待ちファイルのリストを更新する関数
@@ -57,10 +59,12 @@ namespace MediaConverter
 
             InputBox.Items.Clear();
 
-            //下から抜けていくように表示する処理
-            Queue<MediaFiles> rInputFiles = new Queue<MediaFiles>(InputFiles);
-            foreach (MediaFiles data in rInputFiles){
-                InputBox.Items.Insert(0, System.IO.Path.GetFileName(data.ScreenName));
+            //該当データをすべて表示
+            List<FilesForCovert> item = cs.GetMatchList(
+                p => p.Status == (int)DataTypes.Standby && p.IsDeleted == false);
+
+            foreach (MediaFiles data in item){
+                InputBox.Items.Insert(0, data.GetScreenName());
             }
 
             if (beforeSelectedIndex >= InputBox.Items.Count)
@@ -72,6 +76,8 @@ namespace MediaConverter
                 InputBox.SelectedIndex = beforeSelectedIndex;
             }
             InputBox.Update();
+
+            form_list.UpdateDeletedData(cs);
         }
 
         //処理済みファイルのリストを更新する関数
@@ -81,9 +87,13 @@ namespace MediaConverter
 
             CompleteBox.Items.Clear();
 
-            foreach (MediaFiles data in FinishFiles)
+            //該当データをすべて表示
+            List<FilesForCovert> item = cs.GetMatchList(
+                p => p.Status == (int)DataTypes.Finished && p.IsDeleted == false);
+
+            foreach (MediaFiles data in item)
             {
-                CompleteBox.Items.Insert(0, System.IO.Path.GetFileName(data.ScreenName));
+                CompleteBox.Items.Insert(0, data.GetScreenName());
             }
 
             CompleteBox.SelectedIndex = beforeSelectedIndex;
@@ -99,28 +109,31 @@ namespace MediaConverter
         {
 
             //処理済ファイルを移動
-            if (ProssesingFiles.IsDummy == false)
+            //if (ProssesingFiles.IsDummy == false)
+            if(true)
             {
-                FinishFiles.Enqueue(ProssesingFiles);
+                //FinishFiles.Enqueue(ProssesingFiles);
             }
 
             //ファイルを処理中に移動
             if (InputBox.Items.Count == 0)
             {
-                ProssesingFiles = new MediaFiles { IsDummy = true };
+                //ProssesingFiles = new MediaFiles { IsDummy = true };
+                //ProssesingFiles = new MediaFiles();
             }
             else
             {
-                ProssesingFiles = InputFiles.Dequeue();
+                //ProssesingFiles = InputFiles.Dequeue();
             }
 
             //処理中表示を変更
-            label_Progress.Text = "実行中: "
-                + System.IO.Path.GetFileName(ProssesingFiles.ScreenName);
+            //label_Progress.Text = "実行中: "
+            //    + System.IO.Path.GetFileName(ProssesingFiles.GetScreenName());
 
             //表示の更新
             ProssessWaitListBoxUpdate();
             ProssessFinishListBoxUpdate();
+            form_list.Update(cs);
 
             //System.Diagnostics.Debug.WriteLine("Timer.");
         }
@@ -141,7 +154,8 @@ namespace MediaConverter
                 od = form2.GetOptionData();
                 System.Diagnostics.Debug.WriteLine("OK Dialog: " + od.ToString());
             }
-            else if(form2.DialogResult == DialogResult.Cancel){
+            else if(form2.DialogResult == DialogResult.Cancel)
+            {
                 //キャンセル
                 System.Diagnostics.Debug.WriteLine("Cencel Dialog");
             }
@@ -189,17 +203,20 @@ namespace MediaConverter
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Delete File. ");
+            System.Diagnostics.Debug.WriteLine(
+                "SelectedIndex = " + InputBox.SelectedIndex.ToString());
 
-            if(InputBox.SelectedIndex >= 0)
+            if (InputBox.SelectedIndex >= 0)
             {
-                List<MediaFiles> mf = InputFiles.ToList();
-                mf.RemoveAt(InputFiles.Count - InputBox.SelectedIndex - 1);
-                InputFiles.Clear();
-                foreach(MediaFiles n in mf)
-                {
-                    InputFiles.Enqueue(n);
-                }
+                System.Diagnostics.Debug.WriteLine("Delete File. ");
+
+                //該当ファイルを検索
+                List<FilesForCovert> item = cs.GetMatchList(
+                p => p.Status == (int)DataTypes.Standby && p.IsDeleted == false);
+                item[item.Count - InputBox.SelectedIndex - 1].IsDeleted = true;
+
+                form_list.Update(cs);
+
                 ProssessWaitListBoxUpdate();
             }
         }

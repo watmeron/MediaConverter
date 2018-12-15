@@ -1,6 +1,6 @@
 ﻿namespace MediaConverter
 {
-    partial class Form
+    partial class MainForm
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -308,7 +308,7 @@
             this.checkButton_Continue.UseVisualStyleBackColor = true;
             this.checkButton_Continue.CheckedChanged += new System.EventHandler(this.checkButton_Continue_CheckedChanged);
             // 
-            // Form
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -317,7 +317,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(291, 460);
-            this.Name = "Form";
+            this.Name = "MainForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Form";
             this.contextMenuStrip_DeleteInput.ResumeLayout(false);
