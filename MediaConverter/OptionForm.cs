@@ -41,6 +41,8 @@ namespace MediaConverter
         {
             od = op_input;
             comboBox_ParrallelNum.SelectedIndex = map[od.parrallel_num];
+
+            ShowFileName.Checked = od.IsScreenNameFullPath;
         }
 
         public OptionData GetOptionData()
@@ -51,6 +53,11 @@ namespace MediaConverter
         private void comboBox_ParrallelNum_SelectedIndexChanged(object sender, EventArgs e)
         {
             od.parrallel_num = (int)comboBox_ParrallelNum.Items[comboBox_ParrallelNum.SelectedIndex];
+        }
+
+        private void ShowFileName_CheckedChanged(object sender, EventArgs e)
+        {
+            od.IsScreenNameFullPath = ShowFileName.Checked;
         }
     }
 }

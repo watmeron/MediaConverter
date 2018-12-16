@@ -32,6 +32,7 @@
             this.comboBox_ParrallelNum = new System.Windows.Forms.ComboBox();
             this.button_OK = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.ShowFileName = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -71,11 +72,23 @@
             this.button1.Text = "キャンセル";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // ShowFileName
+            // 
+            this.ShowFileName.AutoSize = true;
+            this.ShowFileName.Location = new System.Drawing.Point(15, 85);
+            this.ShowFileName.Name = "ShowFileName";
+            this.ShowFileName.Size = new System.Drawing.Size(150, 16);
+            this.ShowFileName.TabIndex = 4;
+            this.ShowFileName.Text = "ファイル名をフルパスで表示";
+            this.ShowFileName.UseVisualStyleBackColor = true;
+            this.ShowFileName.CheckedChanged += new System.EventHandler(this.ShowFileName_CheckedChanged);
+            // 
             // OptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(219, 426);
+            this.Controls.Add(this.ShowFileName);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button_OK);
             this.Controls.Add(this.comboBox_ParrallelNum);
@@ -93,5 +106,6 @@
         private System.Windows.Forms.ComboBox comboBox_ParrallelNum;
         private System.Windows.Forms.Button button_OK;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox ShowFileName;
     }
 }

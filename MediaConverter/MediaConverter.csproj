@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandList.cs" />
     <Compile Include="ControlFiles.cs" />
     <Compile Include="MediaFiles.cs" />
     <Compile Include="MainForm.cs">
@@ -105,6 +106,7 @@
     <Content Include="About.txt" />
     <Content Include="Class Diagram.txt" />
     <Content Include="ClassDiagram.png" />
+    <Content Include="ReplaceExpressions.txt" />
     <Content Include="Use case Diagram.png" />
     <Content Include="Use case Diagram.txt" />
   </ItemGroup>

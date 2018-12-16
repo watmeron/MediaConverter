@@ -13,10 +13,12 @@ namespace MediaConverter
     public class OptionData
     {
         public int parrallel_num;      //バッチの並列実行数
+        public Boolean IsScreenNameFullPath;    //ファイル名をフルパスで表示するか
 
         public OptionData()
         {
             parrallel_num = 1;
+            IsScreenNameFullPath = false;
         }
 
         
@@ -25,6 +27,7 @@ namespace MediaConverter
             String str = "";
 
             str += "parrallel_num: " + parrallel_num.ToString();
+            str += "screen name is full path: " + IsScreenNameFullPath.ToString();
 
             return str;
         }
