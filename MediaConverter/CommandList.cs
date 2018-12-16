@@ -27,7 +27,10 @@ namespace MediaConverter
 
         public CommandList()
         {
+            Commands = new List<string>();
             Commands.Add("sleep");
+
+            ReplaceRegulExpress = new List<Tuple<string, string>>();
         }
 
         //置換済みのコマンドを返す
@@ -48,7 +51,7 @@ namespace MediaConverter
             return OutCommand;
         }
 
-        int ReadRegexFromFile(String name)
+        public int ReadRegexFromFile(String name)
         {
             if (!File.Exists(name))
             {
