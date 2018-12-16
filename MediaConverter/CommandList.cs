@@ -53,6 +53,8 @@ namespace MediaConverter
 
         public int ReadRegexFromFile(String name)
         {
+            System.Diagnostics.Debug.WriteLine(System.IO.Directory.GetCurrentDirectory());
+
             if (!File.Exists(name))
             {
                 //存在しないファイルが指定されたら例外を投げる
@@ -67,8 +69,10 @@ namespace MediaConverter
                 {
                     System.Diagnostics.Debug.WriteLine(line);
 
-                    MatchCollection matche = Regex.Matches(line, "\".*?\"");
-                    System.Diagnostics.Debug.WriteLine(matche);
+                    //MatchCollection matche = Regex.Matches(line, "\".*?\"");
+                    Match m = Regex.Match(line, "(?<rep>(\".*?\"|^\"*?)):(?<torep>\".*?\"|^\"*?)");
+                    System.Diagnostics.Debug.WriteLine(m.Groups["rep"].ToString());
+                    System.Diagnostics.Debug.WriteLine(m.Groups["torep"].ToString());
                 }
             }
 

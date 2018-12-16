@@ -56,7 +56,7 @@ namespace MediaConverter
             RefCount = 0;
 
             cdl = new CommandList();
-            cdl.ReadRegexFromFile("ReplaceExpressions.txt");
+            cdl.ReadRegexFromFile("..\\..\\ReplaceExpressions.txt");
         }
 
         /*
