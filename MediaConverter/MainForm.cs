@@ -19,6 +19,8 @@ namespace MediaConverter
         //すべてのファイル
         private ControlFiles cs;
 
+        private CommandList cl;
+
         public MainForm()
         {
             InitializeComponent();
@@ -31,7 +33,30 @@ namespace MediaConverter
 
             //すべてのファイルリストを確保
             cs = new ControlFiles();
+
+            cl = new CommandList();
+
+            //コマンドリストを更新
+            CommandListUpdate();
         }
+
+        
+        public MainForm(ControlFiles Ics, OptionData Iod)
+        {
+            InitializeComponent();
+
+            od = Iod;
+
+            //データ表示ウィンドウ
+            form_list = new ShowFileList();
+            form_list.Show();
+
+            //すべてのファイルリストを確保
+            cs = Ics;
+
+            return;
+        }
+
 
 
         //DDされたファイルを入力待ちキューに追加
@@ -138,6 +163,7 @@ namespace MediaConverter
             //System.Diagnostics.Debug.WriteLine("Timer.");
         }
 
+        //設定ボタンを押したとき
         private void button_CommandOption_Click(object sender, EventArgs e)
         {
             OptionForm form2 = new OptionForm();
@@ -167,11 +193,13 @@ namespace MediaConverter
             form2.Dispose();
         }
 
+        //処理待ちファイル用のメニューが開かれたとき
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Open MenuBox.");
         }
 
+        //処理待ちリストにポインタが載ったとき
         private void InputBox_MouseDown(object sender, MouseEventArgs e)
         {
             switch (e.Button)
@@ -201,6 +229,7 @@ namespace MediaConverter
             }
         }
 
+        //処理待ちファイルリストないで右クリックがあったとき
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(
@@ -238,6 +267,17 @@ namespace MediaConverter
                 checkButton_Continue.Text = "停止中";
                 timer_for_test.Enabled = false;
             }
+        }
+
+        private void CommandListUpdate()
+        {
+            CommandList.Items.Clear();
+
+            foreach(var c in cl.GetAllCommandsName())
+            {
+                CommandList.Items.Add(c);
+            }
+            CommandList.Update();
         }
     }
 }

@@ -57,6 +57,7 @@ namespace MediaConverter
 
             cdl = new CommandList();
             cdl.ReadRegexFromFile("..\\..\\ReplaceExpressions.txt");
+            cdl.ReadCommandsFromFile("..\\..\\Transcode.ini");
         }
 
         /*

@@ -13,10 +13,38 @@ using System.Windows.Forms;
 
 namespace MediaConverter
 {
+    class CommandData
+    {
+        String TitleLocal, DescriptionLocal;        //説明
+        String TitleEn, DescriptionEn;              //英語の説明
+        List<String> CommandList;                   //コマンドリスト
+
+        CommandData()
+        {
+            CommandList = new List<string>();
+        }
+
+        public override string ToString()
+        {
+            String OutStr = "";
+
+            OutStr += "Title Local: " + TitleLocal + "\n";
+            OutStr += "Discription Local: " + DescriptionLocal + "\n";
+            OutStr += "Title English: " + TitleEn + "\n";
+            OutStr += "Discription English: " + DescriptionEn + "\n";
+
+            OutStr += CommandList.ToString();
+
+            return OutStr;
+        }
+    }
+    
     class CommandList
     {
 
-        public String Commands;               //実行するコマンドの元の文字列
+        public List<String> Commands;               //実行するコマンドの元の文字列
+
+        public List<CommandData> CmData;            //コマンドデータ
 
         //必要な置換をする正規表現リスト
         public List<Tuple<String, String>> ReplaceRegulExpress;
@@ -24,10 +52,12 @@ namespace MediaConverter
 
         public CommandList()
         {
-            //Commands = new List<string>();
-            //Commands.Add("sleep");
+            Commands = new List<String>();
+            Commands.Add("sleep");
 
             ReplaceRegulExpress = new List<Tuple<string, string>>();
+
+            CmData = new List<CommandData>();
 
             //デフォルトで置換する表現のリストをあらかじめ入れておく
             ReplaceRegulExpress.Add(new Tuple<string, string>("<%InputFile%>", "None"));
@@ -105,7 +135,7 @@ namespace MediaConverter
         //置換済みのコマンドを返す
         public String ReplacedCommand(int CommandIndex)
         {
-            String OutCommand = Commands;
+            String OutCommand = Commands[CommandIndex];
 
             //ファイルに関する置換
 
@@ -119,6 +149,44 @@ namespace MediaConverter
             return OutCommand;
         }
 
+        public List<String> GetAllCommandsName()
+        {
+            List<String> return_list = new List<string>();
+            foreach(var c in Commands)
+            {
+                return_list.Add(c.Split(' ')[0]);
+            }
+            return return_list;
+        }
+
+        //コマンドをiniファイルから読み込む
+        public int ReadCommandsFromFile(String FileName)
+        {
+            System.Diagnostics.Debug.WriteLine(System.IO.Directory.GetCurrentDirectory());
+            System.Diagnostics.Debug.WriteLine(FileName);
+
+            if (!File.Exists(FileName))
+            {
+                //存在しないファイルが指定されたら例外を投げる
+                System.Diagnostics.Debug.WriteLine("Unknown File.");
+                throw new FileNotFoundException();
+            }
+
+            HandmadeIniFile iniFile = new HandmadeIniFile(FileName);
+
+            String infoTitle = iniFile.Read("Info", "Title");
+            System.Diagnostics.Debug.WriteLine(infoTitle);
+
+            infoTitle = iniFile.Read("Item0", "Title");
+            System.Diagnostics.Debug.WriteLine(infoTitle);
+
+            String Command0 = iniFile.Read("Item0", "Command0");
+            System.Diagnostics.Debug.WriteLine(Command0);
+
+            return 0;
+        }
+
+        // 置換する文字列をファイルから読み込む
         public int ReadRegexFromFile(String name)
         {
             System.Diagnostics.Debug.WriteLine(System.IO.Directory.GetCurrentDirectory());

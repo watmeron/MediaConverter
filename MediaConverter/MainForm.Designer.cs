@@ -35,7 +35,7 @@
             this.label_Under1 = new System.Windows.Forms.Label();
             this.FilterBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CommandList = new System.Windows.Forms.ComboBox();
             this.label_Command = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.CompleteBox = new System.Windows.Forms.ListBox();
@@ -127,15 +127,15 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "↓";
             // 
-            // comboBox1
+            // CommandList
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.SetColumnSpan(this.comboBox1, 3);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(63, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(205, 20);
-            this.comboBox1.TabIndex = 6;
+            this.CommandList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.SetColumnSpan(this.CommandList, 3);
+            this.CommandList.FormattingEnabled = true;
+            this.CommandList.Location = new System.Drawing.Point(63, 3);
+            this.CommandList.Name = "CommandList";
+            this.CommandList.Size = new System.Drawing.Size(205, 20);
+            this.CommandList.TabIndex = 6;
             // 
             // label_Command
             // 
@@ -282,7 +282,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.label_Progress, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button_CommandOption, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.CommandList, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.checkButton_Continue, 2, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 237);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -338,7 +338,7 @@
         private System.Windows.Forms.Label label_Under1;
         private System.Windows.Forms.ListBox FilterBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CommandList;
         private System.Windows.Forms.Label label_Command;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox CompleteBox;
