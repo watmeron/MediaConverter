@@ -120,6 +120,14 @@ namespace MediaConverter
         {
             String Value = "";
 
+            if(Sections.Exists(p => p.SectionName == section))
+            {
+                if(Sections.Find(p => p.SectionName == section).Values.ContainsKey(key))
+                {
+                    Value = Sections.Find(p => p.SectionName == section).Values[key];
+                }
+            }
+
             return Value;
         }
     }
