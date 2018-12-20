@@ -19,8 +19,6 @@ namespace MediaConverter
         //すべてのファイル
         private ControlFiles cs;
 
-        private CommandList cl;
-
         public MainForm()
         {
             InitializeComponent();
@@ -33,8 +31,6 @@ namespace MediaConverter
 
             //すべてのファイルリストを確保
             cs = new ControlFiles();
-
-            cl = new CommandList();
 
             //コマンドリストを更新
             CommandListUpdate();
@@ -273,7 +269,7 @@ namespace MediaConverter
         {
             CommandList.Items.Clear();
 
-            foreach(var c in cl.GetAllCommandsName())
+            foreach(var c in cs.GetAllCommandScreenName())
             {
                 CommandList.Items.Add(c);
             }

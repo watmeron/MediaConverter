@@ -45,7 +45,7 @@ namespace MediaConverter
         private int RefCount;                    //ファイルを連続しての参照用
         public int Count;                        //データ数
 
-        CommandList cdl;                         //コマンド関連クラス
+        private CommandList cdl;                         //コマンド関連クラス
 
         public ControlFiles()
         {
@@ -131,6 +131,14 @@ namespace MediaConverter
         public List<FilesForCovert> GetMatchList(Func<FilesForCovert, Boolean> func)
         {
             return Data.Where(func).ToList();
+        }
+
+        /*
+         * コマンドリストを返す
+         */
+        public List<String> GetAllCommandScreenName()
+        {
+            return cdl.GetAllCommandsName();
         }
 
     }

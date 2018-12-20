@@ -15,13 +15,18 @@ namespace MediaConverter
 {
     class CommandData
     {
-        String TitleLocal, DescriptionLocal;        //説明
-        String TitleEn, DescriptionEn;              //英語の説明
-        List<String> CommandList;                   //コマンドリスト
+        public String TitleLocal, DescriptionLocal;        //説明
+        public String TitleEn, DescriptionEn;              //英語の説明
+        public List<String> CommandList;                   //コマンドリスト
 
-        CommandData()
+        public CommandData()
         {
             CommandList = new List<string>();
+
+            TitleLocal = new String("none.".ToCharArray());
+            DescriptionLocal = new String("none.".ToCharArray());
+            TitleEn = new String("none.".ToCharArray());
+            DescriptionEn = new String("none.".ToCharArray());
         }
 
         public override string ToString()
@@ -45,6 +50,8 @@ namespace MediaConverter
         public List<String> Commands;               //実行するコマンドの元の文字列
 
         public List<CommandData> CmData;            //コマンドデータ
+        public String TitleLocal, DescriptionLocal;        //説明
+        public String TitleEn, DescriptionEn;              //英語の説明
 
         //必要な置換をする正規表現リスト
         public List<Tuple<String, String>> ReplaceRegulExpress;
@@ -152,10 +159,20 @@ namespace MediaConverter
         public List<String> GetAllCommandsName()
         {
             List<String> return_list = new List<string>();
+
+            /*
             foreach(var c in Commands)
             {
                 return_list.Add(c.Split(' ')[0]);
             }
+            */
+
+            foreach (var c in CmData)
+            {
+                return_list.Add(c.TitleLocal);
+                System.Diagnostics.Debug.WriteLine("ここ"　+ c.TitleLocal);
+            }
+
             return return_list;
         }
 
@@ -174,14 +191,46 @@ namespace MediaConverter
 
             HandmadeIniFile iniFile = new HandmadeIniFile(FileName);
 
-            String infoTitle = iniFile.Read("Info", "Title");
-            System.Diagnostics.Debug.WriteLine(infoTitle);
+            TitleLocal = iniFile.Read("Info", "Title");
+            TitleEn    = iniFile.Read("Info", "TitleE");
+            DescriptionLocal = iniFile.Read("Info", "Description");
+            DescriptionEn = iniFile.Read("Info", "DescriptionE");
 
-            infoTitle = iniFile.Read("Item0", "Title");
-            System.Diagnostics.Debug.WriteLine(infoTitle);
+            System.Diagnostics.Debug.WriteLine(TitleLocal);
+            System.Diagnostics.Debug.WriteLine(TitleEn);
+            System.Diagnostics.Debug.WriteLine(DescriptionLocal);
+            System.Diagnostics.Debug.WriteLine(DescriptionEn);
 
-            String Command0 = iniFile.Read("Item0", "Command0");
-            System.Diagnostics.Debug.WriteLine(Command0);
+            String infoTitle = "";
+            for(int i = 0; ; i++)
+            {
+                String thisSection = "Item" + i.ToString();
+
+                infoTitle = iniFile.Read(thisSection, "Title");
+                if (infoTitle.Length == 0) break;
+
+                CommandData commandData = new CommandData();
+
+                commandData.TitleLocal = infoTitle;
+                commandData.TitleEn    = iniFile.Read(thisSection, "TitleE");
+                commandData.DescriptionLocal = iniFile.Read(thisSection, "Description");
+                commandData.DescriptionEn    = iniFile.Read(thisSection, "DescriptionE");
+
+                //System.Diagnostics.Debug.WriteLine("title : " + infoTitle);
+
+                for (int j = 0; ; j++)
+                {
+                    String Command0 = iniFile.Read(thisSection, "Command" + j.ToString());
+                    if (Command0.Length == 0) break;
+
+                    commandData.CommandList.Add(Command0);
+
+                    //System.Diagnostics.Debug.WriteLine("Command" + j.ToString() + " : " + Command0);
+                }
+
+                CmData.Add(commandData);
+            }
+            
 
             return 0;
         }
