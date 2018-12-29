@@ -31,5 +31,10 @@ namespace MediaConverter
 
             return str;
         }
+
+        public OptionData Clone()   // 必須 ICloneableのMemberwiseClone();にてコピーを行う
+        {
+            return (OptionData)MemberwiseClone();
+        }
     }
 }

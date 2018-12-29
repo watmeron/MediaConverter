@@ -39,7 +39,7 @@ namespace MediaConverter
 
         public void SetOptionData(OptionData op_input)
         {
-            od = op_input;
+            od = op_input.Clone();
             comboBox_ParrallelNum.SelectedIndex = map[od.parrallel_num];
 
             ShowFileName.Checked = od.IsScreenNameFullPath;

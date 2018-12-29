@@ -170,7 +170,7 @@ namespace MediaConverter
             foreach (var c in CmData)
             {
                 return_list.Add(c.TitleLocal);
-                System.Diagnostics.Debug.WriteLine("ここ"　+ c.TitleLocal);
+                System.Diagnostics.Debug.WriteLine(c.TitleLocal);
             }
 
             return return_list;
