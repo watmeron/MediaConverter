@@ -46,6 +46,7 @@ namespace MediaConverter
         public int Count;                        //データ数
 
         private CommandList cdl;                         //コマンド関連クラス
+        private FilterData fd;
 
         public ControlFiles()
         {
@@ -55,9 +56,14 @@ namespace MediaConverter
 
             RefCount = 0;
 
+            //iniファイル読み込み
             cdl = new CommandList();
             cdl.ReadRegexFromFile("..\\..\\ReplaceExpressions.txt");
             cdl.ReadCommandsFromFile("..\\..\\Transcode.ini");
+
+            //デフォルトのコマンドを設定
+            fd = new FilterData();
+            fd.cmd = cdl.CmData[0];
         }
 
         /*
@@ -139,6 +145,16 @@ namespace MediaConverter
         public List<String> GetAllCommandScreenName()
         {
             return cdl.GetAllCommandsName();
+        }
+
+        /*
+         * フィルタリストを返す
+         */
+        public List<String> GetAllFilterName()
+        {
+            List<String> l = new List<String>();
+            l.Add(fd.cmd.ToString());
+            return l;
         }
 
     }

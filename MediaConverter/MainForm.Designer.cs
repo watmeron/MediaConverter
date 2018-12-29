@@ -63,7 +63,7 @@
             this.InputBox.FormattingEnabled = true;
             this.InputBox.HorizontalScrollbar = true;
             this.InputBox.ItemHeight = 12;
-            this.InputBox.Location = new System.Drawing.Point(3, 23);
+            this.InputBox.Location = new System.Drawing.Point(3, 130);
             this.InputBox.Name = "InputBox";
             this.InputBox.Size = new System.Drawing.Size(271, 52);
             this.InputBox.TabIndex = 0;
@@ -75,18 +75,18 @@
             // 
             this.label_InputBox.AutoSize = true;
             this.label_InputBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_InputBox.Location = new System.Drawing.Point(3, 0);
+            this.label_InputBox.Location = new System.Drawing.Point(3, 107);
             this.label_InputBox.Name = "label_InputBox";
             this.label_InputBox.Size = new System.Drawing.Size(271, 20);
             this.label_InputBox.TabIndex = 1;
-            this.label_InputBox.Text = "変換待ち";
+            this.label_InputBox.Text = "変換待ちファイル";
             this.label_InputBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_Filter
             // 
             this.label_Filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label_Filter.AutoSize = true;
-            this.label_Filter.Location = new System.Drawing.Point(119, 107);
+            this.label_Filter.Location = new System.Drawing.Point(119, 0);
             this.label_Filter.Name = "label_Filter";
             this.label_Filter.Size = new System.Drawing.Size(38, 20);
             this.label_Filter.TabIndex = 2;
@@ -103,6 +103,7 @@
             this.label_Under1.TabIndex = 3;
             this.label_Under1.Text = "↓";
             this.label_Under1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_Under1.Visible = false;
             // 
             // FilterBox
             // 
@@ -112,7 +113,7 @@
             this.FilterBox.BackColor = System.Drawing.SystemColors.Window;
             this.FilterBox.FormattingEnabled = true;
             this.FilterBox.ItemHeight = 12;
-            this.FilterBox.Location = new System.Drawing.Point(3, 130);
+            this.FilterBox.Location = new System.Drawing.Point(3, 23);
             this.FilterBox.Name = "FilterBox";
             this.FilterBox.Size = new System.Drawing.Size(271, 52);
             this.FilterBox.TabIndex = 4;
@@ -136,6 +137,7 @@
             this.CommandList.Name = "CommandList";
             this.CommandList.Size = new System.Drawing.Size(205, 20);
             this.CommandList.TabIndex = 6;
+            this.CommandList.Visible = false;
             // 
             // label_Command
             // 
@@ -241,17 +243,17 @@
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.InputBox, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label_InputBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.CompleteBox, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.label_Under1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label_Filter, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.FilterBox, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label_Complete, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.label_Command, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.FilterBox, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.InputBox, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label_InputBox, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label_Filter, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 11;

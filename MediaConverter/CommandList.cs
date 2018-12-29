@@ -43,7 +43,113 @@ namespace MediaConverter
             return OutStr;
         }
     }
-    
+
+    class FilterData
+    {
+        // 分岐の方法について
+        enum ConditionType
+        {
+            None,           // 無条件で1番目のコマンドを返す
+            PathContain,    // パスに文字列を含む
+            FNameContain,   // ファイル名に文字列を含む
+            Match          // 正規表現にマッチ
+        }
+
+        // コマンド
+        private int Condition = (int)ConditionType.None;
+        private String BranchData;                          //分岐の条件に使う文字列
+        private bool IsResultInvert = false;                //Not条件かどうか
+        public FilterData[] next = new FilterData[2]  { null, null };        //ツリー構造にするやつ
+        public CommandData cmd = null;                      //実行するコマンド
+
+        // ツリー構造が正しく構築されているか確認
+        private bool CheckTreeData()
+        {
+            if(Condition == (int)ConditionType.None)
+            {
+                //コマンド実行だけする
+                if (BranchData.Count() > 0) return true;
+                else return false;
+            }
+            else
+            {
+                //分岐する
+                if(next[0] != null && next[1] != null)
+                {
+                    return next[0].CheckTreeData() && next[1].CheckTreeData();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        //ファイル名から適切な条件を選ぶ
+        public CommandData GetGoodCommand(String FileName)
+        {
+            if(CheckTreeData() == false)
+            {
+                //ツリー構造ができてない
+                return null;
+            }
+
+            int TrueIndex, FalseIndex;          //結果をあらわすインデックス
+            if (IsResultInvert == false)
+            {
+                TrueIndex = 0;
+                FalseIndex = 1;
+            }
+            else
+            {
+                TrueIndex = 1;
+                FalseIndex = 0;
+            }
+
+            // 実行すべきコマンドの探索
+            bool result;
+            switch (Condition)
+            {
+                case (int)ConditionType.None:
+                    return cmd;
+
+                case (int)ConditionType.PathContain:
+                    if (FileName.Contains(BranchData))
+                        return next[TrueIndex].GetGoodCommand(FileName);
+                    else
+                        return next[FalseIndex].GetGoodCommand(FileName);
+
+                case (int)ConditionType.FNameContain:
+                    result = Path.GetFileName(FileName).Contains(BranchData);
+                    break;
+                        
+
+                case (int)ConditionType.Match:
+                    result = (Regex.IsMatch(FileName, BranchData) == true);
+                    break;
+
+                default:
+                    return null;
+            }
+
+            if (result) return next[TrueIndex].GetGoodCommand(FileName);
+            else return next[FalseIndex].GetGoodCommand(FileName);
+        }
+
+        // 表示用のやつ
+        public String GetStringExpression()
+        {
+            if (cmd != null)
+            {
+                return cmd.TitleLocal;
+            }
+            else
+            {
+                return ("hoge");
+            }
+        }
+    }
+
     class CommandList
     {
 

@@ -34,6 +34,12 @@ namespace MediaConverter
 
             //コマンドリストを更新
             CommandListUpdate();
+
+            //フィルタリストを更新
+            foreach(String i in cs.GetAllFilterName())
+            {
+                FilterBox.Items.Add(i);
+            }
         }
 
         
