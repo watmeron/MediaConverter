@@ -47,6 +47,12 @@
   <ItemGroup>
     <Compile Include="CommandList.cs" />
     <Compile Include="ControlFiles.cs" />
+    <Compile Include="FilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterForm.Designer.cs">
+      <DependentUpon>FilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="IniFile.cs" />
     <Compile Include="MediaFiles.cs" />
     <Compile Include="MainForm.cs">
@@ -70,6 +76,9 @@
     <Compile Include="ShowFileList.Designer.cs">
       <DependentUpon>ShowFileList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FilterForm.resx">
+      <DependentUpon>FilterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

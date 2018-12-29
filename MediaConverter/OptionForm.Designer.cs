@@ -93,6 +93,9 @@
             this.Controls.Add(this.button_OK);
             this.Controls.Add(this.comboBox_ParrallelNum);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "OptionForm";
             this.Text = "コマンド設定";
             this.ResumeLayout(false);
