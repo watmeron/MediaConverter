@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace MediaConverter
 {
-    class CommandData
+    public class CommandData
     {
         public String TitleLocal, DescriptionLocal;        //説明
         public String TitleEn, DescriptionEn;              //英語の説明
@@ -33,21 +33,24 @@ namespace MediaConverter
         {
             String OutStr = "";
 
+            /*
             OutStr += "Title Local: " + TitleLocal + "\n";
             OutStr += "Discription Local: " + DescriptionLocal + "\n";
             OutStr += "Title English: " + TitleEn + "\n";
             OutStr += "Discription English: " + DescriptionEn + "\n";
-
             OutStr += CommandList.ToString();
+            */
+
+            OutStr += TitleLocal;            
 
             return OutStr;
         }
     }
 
-    class FilterData
+    public class FilterData
     {
         // 分岐の方法について
-        enum ConditionType
+        public enum ConditionType
         {
             None,           // 無条件で1番目のコマンドを返す
             PathContain,    // パスに文字列を含む
@@ -55,12 +58,29 @@ namespace MediaConverter
             Match          // 正規表現にマッチ
         }
 
+        //分岐の方法をあらわす文字列
+        public Dictionary<int, String> ConditionStr = new Dictionary<int, String>();
+
         // コマンド
         private int Condition = (int)ConditionType.None;
         private String BranchData;                          //分岐の条件に使う文字列
         private bool IsResultInvert = false;                //Not条件かどうか
         public FilterData[] next = new FilterData[2]  { null, null };        //ツリー構造にするやつ
         public CommandData cmd = null;                      //実行するコマンド
+
+        public FilterData()
+        {
+            foreach(ConditionType i in Enum.GetValues(typeof(ConditionType)))
+            {
+                String name = Enum.GetName(typeof(ConditionType), i);
+                System.Diagnostics.Debug.WriteLine(name + " : " + (int)i);
+            }
+
+            ConditionStr.Add((int)ConditionType.None, "コマンドを実行");
+            ConditionStr.Add((int)ConditionType.PathContain, "を含むなら");
+            ConditionStr.Add((int)ConditionType.FNameContain, "をファイル名に含むなら");
+            ConditionStr.Add((int)ConditionType.Match, "にマッチ");
+        }
 
         // ツリー構造が正しく構築されているか確認
         private bool CheckTreeData()
@@ -150,7 +170,7 @@ namespace MediaConverter
         }
     }
 
-    class CommandList
+    public class CommandList
     {
 
         public List<String> Commands;               //実行するコマンドの元の文字列

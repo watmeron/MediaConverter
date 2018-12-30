@@ -53,6 +53,18 @@
     <Compile Include="FilterForm.Designer.cs">
       <DependentUpon>FilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FilterListUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterListUserControl.Designer.cs">
+      <DependentUpon>FilterListUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterSettingForm.Designer.cs">
+      <DependentUpon>FilterSettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="IniFile.cs" />
     <Compile Include="MediaFiles.cs" />
     <Compile Include="MainForm.cs">
@@ -78,6 +90,12 @@
     </Compile>
     <EmbeddedResource Include="FilterForm.resx">
       <DependentUpon>FilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterListUserControl.resx">
+      <DependentUpon>FilterListUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterSettingForm.resx">
+      <DependentUpon>FilterSettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

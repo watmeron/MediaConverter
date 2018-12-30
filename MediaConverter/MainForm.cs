@@ -15,6 +15,7 @@ namespace MediaConverter
         OptionData od;
 
         ShowFileList form_list;
+        FilterSettingForm fsf = null;
 
         //すべてのファイル
         private ControlFiles cs;
@@ -34,12 +35,6 @@ namespace MediaConverter
 
             //コマンドリストを更新
             CommandListUpdate();
-
-            //フィルタリストを更新
-            foreach(String i in cs.GetAllFilterName())
-            {
-                FilterBox.Items.Add(i);
-            }
         }
 
         
@@ -280,6 +275,15 @@ namespace MediaConverter
                 CommandList.Items.Add(c);
             }
             CommandList.Update();
+        }
+
+        private void FilterButton_Click(object sender, EventArgs e)
+        {
+            if(fsf == null || fsf.IsDisposed)
+            {
+                fsf = new FilterSettingForm(cs);
+                fsf.Show();
+            }
         }
     }
 }

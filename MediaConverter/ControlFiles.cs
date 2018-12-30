@@ -46,7 +46,7 @@ namespace MediaConverter
         public int Count;                        //データ数
 
         private CommandList cdl;                         //コマンド関連クラス
-        private FilterData fd;
+        public FilterData fd;
 
         public ControlFiles()
         {
