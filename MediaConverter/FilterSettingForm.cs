@@ -13,6 +13,14 @@ namespace MediaConverter
     [Browsable(true)]
     public partial class FilterSettingForm : Form
     {
+        class TreeForms
+        {
+            public FilterListUserControl it = null;       //このフォーム自体
+            public FilterListUserControl[] next = { null, null };
+        }
+
+        TreeForms tform;
+
         public FilterSettingForm(ControlFiles cs)
         {
             InitializeComponent();
@@ -28,6 +36,17 @@ namespace MediaConverter
                 list.Add(cs.fd.ConditionStr[key]);
             }
             filterListUserControl1.SetBranchType(list);
+
+            //いい感じに
+            tform = new TreeForms();
+            tform.it = filterListUserControl1;
+            tform.it.MyProgressEvent += new FilterListUserControl.MyEventHandler(SomethingHappenInFilterForm);
+        }
+
+        public void SomethingHappenInFilterForm(EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(e + ":" + "Something Happen.");
+            return;
         }
     }
 }
