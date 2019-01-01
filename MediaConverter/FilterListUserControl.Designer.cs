@@ -105,12 +105,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox CommandBox;
-        private System.Windows.Forms.ComboBox BranchTypeBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.ComboBox CommandBox;
+        public System.Windows.Forms.ComboBox BranchTypeBox;
+        public System.Windows.Forms.TextBox textBox1;
     }
 }

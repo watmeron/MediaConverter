@@ -12,18 +12,27 @@ namespace MediaConverter
 {
     public partial class FilterListUserControl : UserControl
     {
-        public FilterListUserControl()
-        {
-            InitializeComponent();
-        }
-
         //イベントハンドラ
         public delegate void MyEventHandler(EventArgs e);
         public event MyEventHandler MyProgressEvent;
 
+        public delegate void MyEventHandler2(object obj, EventArgs e);
+        public event MyEventHandler2 BranchTypeBox_Changed;
+
+        public FilterListUserControl()
+        {
+            InitializeComponent();
+
+            MyProgressEvent = null;
+            BranchTypeBox_Changed = null;
+        }
+
         public void SomethingChanged()
         {
-            MyProgressEvent(new EventArgs());
+            if(MyProgressEvent != null)
+            {
+                MyProgressEvent(new EventArgs());
+            }
             return;
         }
 
@@ -62,6 +71,12 @@ namespace MediaConverter
                 CommandBox.Enabled = false;
 
                 // 新しいコントロールの追加
+            }
+
+            //イベントハンドラつかう
+            if (BranchTypeBox_Changed != null)
+            {
+                BranchTypeBox_Changed(this, new EventArgs());
             }
 
             SomethingChanged();
