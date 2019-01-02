@@ -33,8 +33,8 @@ namespace MediaConverter
                 {
                     TreeForms[] sai_tf = new TreeForms[2];
 
-                    sai_tf[0] = this.FindInTree(fc);
-                    sai_tf[1] = this.FindInTree(fc);
+                    sai_tf[0] = this.next[0].FindInTree(fc);
+                    sai_tf[1] = this.next[1].FindInTree(fc);
 
                     if(sai_tf[0] == null && sai_tf[1] == null)
                     {
@@ -61,10 +61,13 @@ namespace MediaConverter
         }
 
         TreeForms tform;
+        ControlFiles cs;
 
-        public FilterSettingForm(ControlFiles cs)
+        public FilterSettingForm(ControlFiles ics)
         {
             InitializeComponent();
+
+            cs = ics;
 
             filterListUserControl1.SetCommandData(cs.GetAllCommandScreenName());
 
@@ -83,17 +86,6 @@ namespace MediaConverter
             tform.it = filterListUserControl1;
             //tform.it.MyProgressEvent += new FilterListUserControl.MyEventHandler(SomethingHappenInFilterForm);
             tform.it.BranchTypeBox_Changed += new FilterListUserControl.MyEventHandler2(BranchTypeBox_Changed);
-
-            // コントロールを追加してみる
-            tform.next[0] = new TreeForms();
-            tform.next[0].it = new FilterListUserControl();
-            tform.next[0].it.Left = tform.it.Left + 30;
-            tform.next[0].it.Top = tform.it.Top + 30;
-            tform.next[0].it.SetCommandData(cs.GetAllCommandScreenName());
-            tform.next[0].it.SetBranchType(list);
-            this.Controls.Add(tform.next[0].it);
-            tform.next[0].it.BranchTypeBox_Changed
-                += new FilterListUserControl.MyEventHandler2(BranchTypeBox_Changed);
         }
 
         public void SomethingHappenInFilterForm(EventArgs e)
@@ -108,7 +100,9 @@ namespace MediaConverter
 
             // 値を返してきたコントロールを検索
             TreeForms tf = tform.FindInTree((FilterListUserControl)obj);
-            if(tf == null)
+            System.Diagnostics.Debug.WriteLine(obj);
+
+            if (tf == null)
             {
                 System.Diagnostics.Debug.WriteLine("No.");
                 return;
@@ -119,21 +113,40 @@ namespace MediaConverter
             }
 
             //
-            if(tf.it.BranchTypeBox.SelectedIndex != 0)
+            if(tf.it.BranchTypeBox.SelectedIndex > 0)
             {
                 // コントロールを追加・削除する
                 if (tf.next[0] == null && tf.next[1] == null)
                 {
                     // 追加する
-                    
+
+                    List<String> list = new List<string>();
+                    List<int> keyList = new List<int>(cs.fd.ConditionStr.Keys);
+                    foreach (int key in keyList) list.Add(cs.fd.ConditionStr[key]);
+                    filterListUserControl1.SetBranchType(list);
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        tform.next[i] = new TreeForms
+                        {
+                            it = new FilterListUserControl()
+                        };
+                        tform.next[i].it.Left = tform.it.Left + 30;
+                        tform.next[i].it.Top = tform.it.Top + 30 * (i+1);
+                        tform.next[i].it.SetCommandData(cs.GetAllCommandScreenName());
+                        tform.next[i].it.SetBranchType(list);
+                        this.Controls.Add(tform.next[i].it);
+                        tform.next[i].it.BranchTypeBox_Changed
+                            += new FilterListUserControl.MyEventHandler2(BranchTypeBox_Changed);
+                    }
                 }
-                else
-                {
-                    //削除する
-                    this.Controls.Remove(tf.next[0].it);
-                    this.Controls.Remove(tf.next[1].it);
-                    tf.next[0] = tf.next[1] = null;
-                }
+            }
+            else if (tf.next[0] != null && tf.next[1] != null)
+            {
+                //削除する
+                this.Controls.Remove(tf.next[0].it);
+                this.Controls.Remove(tf.next[1].it);
+                tf.next[0] = tf.next[1] = null;
             }
 
             return;
